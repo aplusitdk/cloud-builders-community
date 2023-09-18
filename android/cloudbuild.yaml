@@ -3,7 +3,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=europe-north1-docker.pkg.dev/order-system-dk/container-registry'
+  - '--tag=europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:base'
   - '--file=Dockerfile-base'
   - '.'
 
