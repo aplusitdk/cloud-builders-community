@@ -10,7 +10,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=gcr.io/$PROJECT_ID/android:${_ANDROID_VERSION}'
+  - '--tag=europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:${_ANDROID_VERSION}'
   - '--build-arg'
   - 'android_version=${_ANDROID_VERSION}'
   - '--build-arg'
@@ -18,11 +18,11 @@ steps:
   - '--file=Dockerfile-sdk'
   - '.'
   - '--cache-from'
-  - 'gcr.io/$PROJECT_ID/android:base'
+  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:base'
 
 images:
-  - 'gcr.io/$PROJECT_ID/android:base'
-  - 'gcr.io/$PROJECT_ID/android:${_ANDROID_VERSION}'
+  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:base'
+  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:${_ANDROID_VERSION}'
 
 timeout: 2000s
 tags: ['cloud-builders-community']
