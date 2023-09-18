@@ -3,14 +3,14 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:base'
+  - '--tag=gcr.io/$PROJECT_ID/android:base'
   - '--file=Dockerfile-base'
   - '.'
 
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:${_ANDROID_VERSION}'
+  - '--tag=gcr.io/$PROJECT_ID/android:${_ANDROID_VERSION}'
   - '--build-arg'
   - 'android_version=${_ANDROID_VERSION}'
   - '--build-arg'
@@ -18,12 +18,12 @@ steps:
   - '--file=Dockerfile-sdk'
   - '.'
   - '--cache-from'
-  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:base'
+  - 'gcr.io/$PROJECT_ID/android:base'
 
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:${_ANDROID_VERSION}-ndk-r25'
+  - '--tag=gcr.io/$PROJECT_ID/android:${_ANDROID_VERSION}-ndk-r25'
   - '--build-arg'
   - 'android_version=${_ANDROID_VERSION}'
   - '--build-arg'
@@ -31,11 +31,11 @@ steps:
   - '--file=Dockerfile-ndk'
   - '.'
   - '--cache-from'
-  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:${_ANDROID_VERSION}'
+  - 'gcr.io/$PROJECT_ID/android:${_ANDROID_VERSION}'
 
-images: 
-  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:base'
-  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:${_ANDROID_VERSION}'
-  - 'europe-north1-docker.pkg.dev/order-system-dk/container-registry/android:${_ANDROID_VERSION}-ndk-r25'
+images:
+  - 'gcr.io/$PROJECT_ID/android:base'
+  - 'gcr.io/$PROJECT_ID/android:${_ANDROID_VERSION}'
+  - 'gcr.io/$PROJECT_ID/android:${_ANDROID_VERSION}-ndk-r25'
 
 timeout: 2000s
